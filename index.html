@@ -1,0 +1,667 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+		<title>Polishare </title>
+		
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.min.css" rel="stylesheet">
+		<link href="css/bootstrap-tour.min.css" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link href='http://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,600,700,800,300' rel='stylesheet' type='text/css'>
+		<link href="css/style.css" rel="stylesheet">
+		<link rel="stylesheet" href="css/font-awesome.min.css">
+		
+		
+		<script src="js/d3.v2.min.js"></script>		
+		<script src ="js/jquery.min.js"></script>
+		
+		<script type="text/javascript" src="js/dynamicDrawChart.js?v=1.0"></script>	
+		<script type="text/javascript" src="js/stocLib.js?v=1.0"></script>
+		<script type="text/javascript" src="js/chartFieldMap.js?v=1.0"></script> 
+		<script type="text/javascript" src="js/chartHandler.js?v=1.0"></script> 
+		<script type="text/javascript" src="js/canvasHandler.js?v=1.0"></script> 
+		<script type="text/javascript" src="js/validationManager.js?v=1.0"></script> 
+		<script type="text/javascript" src="js/dataCollectorFromUI.js?v=1.0"></script> 
+		<script type="text/javascript" src="js/jquery.nicescroll.min.js?v=1.0"></script>
+		
+		<script type="text/javascript" src="js/jszip.js"></script>
+		<script type="text/javascript" src="js/xlsx.js"></script>
+		<script type="text/javascript" src="js/shim.js"></script>
+		
+		<script type="text/javascript" src="js/bootstrap-tour.min.js"></script>
+		<script type="text/javascript" src="js/bootstrap.min.js"></script>
+		<script type="text/javascript" src="js/intro.js"></script>
+		<script type="text/javascript" src="js/jsonMapper.js"></script>
+		<script type="text/javascript" src="js/dataRandererFromXlsx.js?v=1.0"></script>
+		<script src="js/progressbar.js"></script>
+		
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+		
+	</head>
+	
+	<body>
+		
+        
+		<div class="login-body-style" id="loginView ">
+			<div class="login-containor row">
+				
+				<div class="col-sm-5 col-xs-12 login-socialIcon">
+					<div class="logo"><img src="img/logo.png" alt="#"/></div>
+					<ul class="social-links">
+						<li> <a href="#" class="facebook">Connect on Facebook</a></li>
+						<li><a href="#" class="twitter">Follow on Twitter </a></li>
+						<li> <a href="#"  class="linkdin">Connect on LinkedIn </a></li>
+						
+					</ul>
+					<p class=" pull-left">Powered by Paxcel</p>
+				</div>
+				<div class="col-sm-7 col-xs-12">
+					<div class="login-form">
+						
+						<div class="form-group">
+						<input class="form-control" id="username"></div>
+						<div class="form-group">
+						<input class="form-control" type="password" id="password"></div>
+						
+						<div class="form-group"><button class="btn btn-info form-control form-group" id="login">Submit</button> </div>
+						<div class="row form-group  ">
+							<div class="col-xs-4 "><input type="checkbox"></div>
+						<div class="col-xs-8"> <a href="#" class="text-right pull-right">Forgot Password?</a></div></div>
+						<div class="form-group"><button class="btn btn-success form-control form-group  btn-sign-up">Sign Up Now</button> </div>
+						
+						
+					</div></div> 
+					
+			</div>
+		</div>
+		
+		<div id="wrapper">
+			<header class="navbar-fixed-top">
+				<div class="container"  id ="homePage">
+					<div class="logo">
+						<a href="#">
+							Poli<span>Share</span>
+							<p>polish and share your charts</p>
+						</a>
+					</div>
+					<div class="powered" >powered by<span> <img src="img/4d.png" alt="4d"> </span></div>
+				</div>
+			</header>
+			<!-- Page Content -->
+            
+            <div class="progress-bar-list-outer">  <div class="container" style="position:relative;">    <div class="btn btn-danger btn-selecttour" id="startTour" style="display:none"><i class="fa fa-paper-plane"></i>
+			Take a Tour</div>
+			
+			
+			
+			<div class="progressContainor">
+				<ul class="progress-bar-list">
+					<li id="p1" data-toggle="progressbar" data-target="#myProgressbar" data-value="20">  <button  class="btn btn-default" id="p1"><i class="fa fa-pencil"></i>
+					</button><br>
+					Chart Picker </li>
+					<li data-toggle="progressbar" data-target="#myProgressbar" data-value="40">    <button  class="btn btn-default" id="p2"><i class="fa fa-th"></i>
+					</button><br>
+					Data Collector </li>
+					<li data-toggle="progressbar" data-target="#myProgressbar" data-value="60">    <button  class="btn btn-default" id="p3"><i class="fa fa-sitemap"></i>
+					</button> <br>
+					Theme Manager </li>
+					<li data-toggle="progressbar"   data-target="#myProgressbar" data-value="80" >    <button  class="btn btn-default" id="p4"><i class="fa fa-pencil-square-o"></i>
+					</button> <br>
+					Editer</li>
+					<li data-toggle="progressbar" data-target="#myProgressbar" data-value="100">   <button  class="btn btn-default" id="p5"><i class="fa fa-download"></i>
+					</button> <br>
+					Download Manager &amp; Share Manager</li>
+					
+				</ul>
+				
+				<div id="myProgressbar" class="progress" style="height:4px; clear:both; top:-20px; " >
+					<div class="progress-bar" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%;">
+						<span class="sr-only">0% Complete</span>
+					</div>
+				</div>
+				
+				
+				
+			</div>  </div></div>
+			
+			
+			
+			<div id="page-content-wrapper">
+            <div class="btn-strip-container">
+            	<div class="container" >
+                <div class="row">
+                <div class="col-lg-7  col-md-6 col-sm-12">
+                <ul class="editorList">
+                <li>Edit Your Chart</li>
+							<li><img src="img/icon-edit.png" title="pencil" class="img-responsive" id="textEditing"></li>
+							<li><img src="img/icon-elips.png" title="eclipse" class="img-responsive" id="drawEclipse"></li>
+							<li><img src="img/icon-single-line.png" title="line" class="img-responsive" id="drawLine"></li>
+							<li><img src="img/icon-multipal-line.png" title="range" class="img-responsive" id="drawRange"></li>
+							<li>
+								<label>
+									<input type='color' value='#51ac6f' style='height:0px; width:0px; opacity:0; position:absolute; ' id='editor-color'> <img id ='colorPickerIcon' src='img/icon-color-piker.png' title='color' > 
+								</label>
+								
+								
+							</li>
+						</ul>
+                </div>
+                <div class="col-lg-3 col-md-4  col-sm-12 text-right">
+								<button  id='' data-toggle="modal" 
+								data-target="#saveImagePresenation"  class='btn btn-success presenation-btn ' 'style display:none' > <i class="fa fa-plus"></i>
+								Add In Presenation</button> <div class="chart-screen-short" id="chartScreenList" style="display : none">
+                <button class="btn btn-info pull-right print-save-list-btn" id="showListButton" > <i class="fa fa-bars"></i> </button>
+                <ul class="chart-screen-list" id="scrollbox3">
+					
+				</ul></div></div>
+                <div class="col-lg-2 col-md-2  col-sm-12 text-right">	<button  id='playPresentation' data-toggle="modal" 
+								data-target="#chartSlides" class='btn btn-danger ' 'style display:none' ><i class="fa fa-external-link-square"></i>
+								Presenation</button> </div>
+                </div></div>
+                </div> 
+				
+				
+				
+				<div class="container" >
+					
+					
+					<div class="row page" id="chartGridView">
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="roundedThreeDBarChart" dataType = "nested" value = "roundedThreeDBarChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/cylinderChart.jpg" alt="Donut Chart" class="img-responsive ">
+                                    <div class="edit-pen"></div>
+								</div>
+								<h4> Cylinder<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="barChart"  dataType = "simple" value = "barChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/barChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>Bar<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="basicLineChart"  dataType = "nested" value = "basicLineChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/basicLineChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4> BasicLine<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="threeDBarChart"  dataType = "simple" value = "threeDBarChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/threeDBarChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>3D Bar<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="threeDComparisonChart"  dataType = "simple" value = "threeDComparisonChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/threeDComaprisionChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>3D Comparision<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="multiAxisChart"  dataType = "nested" value = "multiAxisChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/multiAxisLineChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>Multi Axis<span> Chart</span></h4>
+							</div>
+						</div>      
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="comparisonChart"  dataType = "simple" value = "comparisonChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/comparisionChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>Comparision<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="threeDPyramidSliceChart"  dataType = "simple" value = "threeDPyramidSliceChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/pyramidChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>Pyramid<span> Chart</span></h4>
+							</div>
+						</div> 
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="funnelChart"  dataType = "simple" value = "funnelChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/funnelChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>Funnel<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="threeDPieChart"  dataType = "simple" value = "threeDPieChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/threeDPieChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>3D Pie<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="threeDDountChart"  dataType = "simple" value = "threeDDountChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/threeDDountChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>3D Dount<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="pieChart"  dataType = "simple" value = "pieChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/threeDPieChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+								</div>
+								<h4>Pie<span> Chart</span></h4>
+							</div>
+						</div>
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="donutChart"  dataType = "simple" value = "donutChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/cylinderChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+									
+									
+								</div>
+								<h4>Dount With Bar<span> Chart</span></h4>
+							</div>
+						</div>	
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="threeDStackBar"  dataType = "nested" value = "threeDStackBar">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/stackBarChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+									
+									
+								</div>
+								<h4>3D Stack Bar<span> Chart</span></h4>
+							</div>
+						</div>	
+						
+						<div class="col-lg-3 col-md-3 col-sm-6 text-center" id="bulletBarChart"  dataType = "simple]" value = "bulletBarChart">
+							<div class="chart-grid">
+								<div class="chart-image">
+									<div class="twitter-img"></div>
+									<img src="img/bulletBarChart.jpg" alt="Donut Chart" class="img-responsive ">
+									<div class="edit-pen"></div>
+									
+									
+								</div>
+								<h4>Bullet Bar<span> Chart</span></h4>
+							</div>
+						</div>	
+						
+					</div>
+					
+					<div class="page-heading page" id ="chartHeading"> jjjjjjjjj </div>
+					
+					<div style="" class="pull-right" id="helpImportButtons"> <i class="fa fa-question-circle helpIcon" data-placement="top" data-original-title="Having Problem In entering Data Click On this" id="helpIcon"> </i>
+						
+						
+						
+						<div  class="fileUpload btn btn-primary pull-right">
+							<span>IMPORT XLSX</span>
+							<input id="fileSelect" type="file" class="upload" onchange="handleFiles(this.files)" accept=" application/vnd.openxmlformats-officedocument.spreadsheetml.sheet, application/vnd.ms-excel">
+						</div> 
+					</div>
+					
+					
+					<div class="row page" id="dataCollector" style="clear:both;">
+						<div class="col-lg-12">
+							
+							<form class="form-horizontal" role="form">
+								<!--start  for color  -->
+								<div class="form-group">
+									<label class="col-sm-3 col-md-2 col-lg-2 control-label">Dount key :</label>
+									<div class="col-sm-6 col-md-5 col-lg-5 col-xs-9">
+										<input class="form-control" id="focusedInput" type="text"   placeholder="This is focused...">
+									</div>
+									
+									<div class="col-sm-2 col-md-2 col-lg-1 col-xs-3">
+										<input class="form-control" id="focusedInput" type="text"   placeholder="Color Code">
+									</div>
+								</div>
+								
+								<!--end  for color  -->
+								
+								
+								<div class="form-group">
+									<label class="col-sm-3 col-md-2 control-label">Dount key :</label>
+									<div class="col-sm-9 col-md-5">
+										<input class="form-control" id="focusedInput" type="text"   placeholder="This is focused...">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 col-md-2 control-label">Dount key :</label>
+									<div class="col-sm-9 col-md-5">
+										<input class="form-control" id="focusedInput" type="text"   placeholder="This is focused...">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 col-md-2 control-label">Dount key :</label>
+									<div class="col-sm-9 col-md-5">
+										<input class="form-control" id="focusedInput" type="text"   placeholder="This is focused...">
+									</div>
+								</div>
+								<div class="form-group">
+									<label class="col-sm-3 col-md-2 control-label">Dount key :</label>
+									<div class="col-sm-9 col-md-5">
+										<input class="form-control" id="focusedInput" type="text" placeholder="This is focused...">
+									</div>
+								</div>
+								
+								<div class="form-group">
+									<label for="disabledSelect"  class="col-sm-33  col-md-2 control-label"> Disabled select menu (Fieldset disabled) </label>
+									<div class="col-sm-9 col-md-5">
+										<select id="disabledSelect" class="form-control">
+											<option>Disabled select</option>
+										</select>
+									</div>
+								</div>
+								<div class="form-group">
+									<label for="disabledSelect"  class="col-sm-2  col-md-2"> </label>
+									<div class="col-sm-10 col-md-5 text-right">
+										<input type="submit" class="btn btn-submit" value="Make Chart">
+									</div>
+								</div>
+								
+								
+							</form>
+							
+						</div>
+					</div>
+					
+					<div class="row page" id="themeManager">
+						
+					</div>	
+					
+					
+					<div class="row page" id="chartArea" >
+						
+						
+						
+					</div>	
+					
+					<!-- Image Starts -->
+					<!--	<div class="modal fade" id="presentation" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" display:"none">
+						<div class="modal-dialog popImgSetting" >
+						<div class="modal-content">
+						<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+						<h4 class="modal-title" id="myModalLabel"></h4>
+						</div>
+						<div class="modal-body" id ="saveImage">
+						
+						</div>
+						
+						<div class="modal-footer">
+						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+						<button type="button" class="btn btn-primary">Save changes</button>
+						</div>
+						
+						</div>
+						</div>
+					</div> -->
+					
+					<!--  Image End -->		
+                    
+                    
+					<div class ="row page" id="editor">
+						<div class="container" style="position:relative;">
+								
+						</div>
+						
+						
+						
+                        
+                        <div class="row">
+						<div class="col-lg-12" style="margin-top:20px;"><div class="form-group"> 
+							<div class="col-sm-10 col-md-1 text-right">
+								<button  id='backToEditor'  class='btn btn-submit' 'style display:none' > Back </button>
+							</div>
+                            <div class="col-sm-10 col-md-2 text-right"></div>
+                            
+                            <div class="col-sm-10 col-md-2 text-right">
+							<select name="selectedImageType" class='form-control' id='selectedImageType' 'style display:none'>
+								<option value='png'>png</option>
+								<option value='jpg'>jpg</option>
+							</select>
+						</div> 
+							<div class='col-sm-10 col-md-2 text-right'>
+								<button  id='downloadChart'  class='btn btn-submit' 'style display:none'> Download </button>
+							</div>
+							<div class='col-sm-10 col-md-2 text-right'></div>
+							<div class='col-sm-10 col-md-1 text-right'>
+								<img src="img/Twitter-share-button-2.png" alt="Twitter-share-button" id='tweeterShare'  class='btn' 'style display:none; height: 52px;'/>
+							</div>
+							<div class='col-sm-10 col-md-3 text-right'>
+								
+								
+							</div>
+							<div class='col-sm-10 col-md-2 text-right'>
+								
+							</div>
+							
+							
+						</div>
+						</div>
+						<div class="col-lg-12">
+							<div class='form-group'> 
+								<label for='disabledSelect'  class='col-sm-2  col-md-2'> </label>
+								<div class='col-sm-10 col-md-11 pull-left text-right'>
+									<button  id='backToThemeManager'  class='btn btn-submit' > Back </button>
+								</div>
+								<div class='col-sm-10 col-md-1 pull-right text-right'>
+									<button  id='nextBtnToDownload'  class='btn btn-submit' > Next </button>
+								</div>
+							</div>	
+						</div>
+						
+						
+						</div>
+						<div id="saveImage">
+							
+						</div>
+					</div>
+					
+					
+				</div>
+				<!-- /#page-content-wrapper --> 
+				
+			</div>
+			<!-- /#wrapper -->
+			
+			<!-- help image changer -->
+			
+			<div class="fade-popup" id="showPopup" style="display : none">
+			</div>
+			<div class="helpImport topset" id="helpImport" style="display : none"  >
+				<div class="pop-header">
+					<h4  class="modal-title" id = "myModalLabel" ></h4>
+					<i class="fa fa-times" id="helpCloseButton"></i>
+				</div>
+				<div class="chart-img">
+				</div>
+			</div> 
+			
+			
+			<!-- help image closed -->
+			
+			<!-- jQuery --> 
+			<script src="js/jquery.js"></script> 
+			
+			<!-- Bootstrap Core JavaScript --> 
+			<script src="js/bootstrap.min.js"></script> 
+			
+			<canvas id="canvasContainer" width="1170" height="400"></canvas>	
+			<script type="text/javascript" src="js/ohlcchart.js"></script> 
+			
+			  
+                
+                
+                
+				<div class="fade-popup" id="showPopup" style="display : none">
+				</div>
+				<div class="helpImport " id="helpImport"  style="display : none" >
+					<div class="pop-header">
+						<h4  class="modal-title" id = "myModalLabel" >
+                            <span class="number">1</span>
+                            
+							<span class="header-right">
+								<div class="date-and-time">
+									<span class="time">10:00 AM</span>
+								<span class="date">20-02-2015</span></div>
+								<button class="btn btn-info">Prev</button>  <button class="btn btn-info  pull-right">Next</button>
+							</span>
+						</h4>
+						<p class="content"> Lorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, consectetur adipiscing elitLorem ipsum dolor sit amet, </p>
+						
+						<i class="fa fa-times" id="helpCloseButton"></i>
+					</div>
+					<div class="chart-img"><img src="img/graph.png" alt="#">
+					</div>
+				</div> 
+                
+				
+				
+				<!-- Modal -->
+				<div class="modal fade" id="saveImagePresenation" tabindex="-1" role="dialog" 
+				aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-backdrop-containor"></div>
+					<div class="modal-dialog save-image-presenation"   >
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" 
+								data-dismiss="modal" aria-hidden="true">
+									&times;
+								</button>
+								
+							</div>
+							<div class="modal-body">
+								<form class="form-horizontal" style="padding:0 15px;">
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-4 text-right"> <label  >Slide Name</label> </div>
+										<div class="col-xs-8"> <input id="saveStateName" class=" form-control" type="text"> </div></div>
+										
+									</div>
+									<div class="form-group">
+										<div class="row">
+											<div class="col-xs-4 text-right">  <label  >Slide Desc</label>  </div>
+											<div class="col-xs-8"> <input type="text" id="saveStateDesc" class=" form-control"> </div>
+											
+										</div>
+									</div>
+									<div class="form-group ">
+										<div class="row">
+											<div class="col-xs-12 text-right">  <button id="saveState" class="btn btn-submit " data-dismiss="modal" aria-hidden="true">Save</button></div>
+										</div>
+									</div>
+									
+									
+								</form>
+								
+							</div>
+							
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				
+				<!-- Modal -->
+				<div class="modal fade" id="chartSlides" tabindex="-1" role="dialog" 
+				aria-labelledby="myModalLabel" aria-hidden="true">
+					<div class="modal-backdrop-containor"></div>
+					<div class="modal-dialog presenation-slider"   >
+						<div class="modal-content">
+							<div class="modal-header">
+								<div class="row">
+									<div class="col-xs-3  text-right"> <div class="time-date-outer" id="time"></div></div> 
+									<div class="col-xs-4 text-right "> <div class="time-date-outer" id="date"></div></div>
+									<div class="col-xs-4 text-right">   <button class="btn btn-info btn-next-previous" id="prevPresentation">Prev</button> &nbsp;  <button class="btn btn-info btn-next-previous" id="nextPresentation">Next</button></div>
+									
+									<div class="col-xs-1">  <button type="button" class="close" 
+										data-dismiss="modal" aria-hidden="true">
+											&times;
+										</button> </div>
+										
+								</div>
+								
+							<h4 id="svgHeading"> </h4> </div>
+							<div class="modal-body" >
+								<div id="imageDiv"></div>
+								<div class="row">  <div class="col-xs-12 text-right  "><button class="btn btn-danger btn-next-previous" data-dismiss="modal" aria-hidden="true">Save</button> </div></div>				
+							</div>
+							
+						</div><!-- /.modal-content -->
+					</div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+                
+                
+		</body>
+        
+        <script >
+        $('#scrollbox3').nicescroll({
+    showOnHover: false,
+    verticalTrackClass: 'track3',
+    verticalHandleClass: 'handle3'
+});
+        </script>
+		
+	</html>
